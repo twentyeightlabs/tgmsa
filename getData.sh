@@ -11,9 +11,9 @@ TIMEOPEN
 TIMEOPENSEC
 
 #DATE=`date +"%Y-%m-%d"`
-DATE="2017-04-01"
+DATE="2017-05-08"
 
-for i in $(seq 393 395); do
+for i in $(seq 406 415); do
 	cd $TGMSAHOME
 	if [ ! -d $REPORTSHOME ]; then
                 mkdir $REPORTSHOME
