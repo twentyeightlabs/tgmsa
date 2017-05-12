@@ -1,6 +1,7 @@
 #/bin/bash
 
 TGMSAHOME=/root/tgmsa
+REPORTSHOME=$TGMSAHOME/reports
 BOXES=395
 OPENHOUR
 CLOSEHOUR
@@ -14,10 +15,14 @@ DATE="2017-04-01"
 
 for i in $(seq 393 395); do
 	cd $TGMSAHOME
-	if [ ! -d $TGMSAHOME/$DATE ]; then
-		mkdir $TGMSAHOME/$DATE
+	if [ ! -d $REPORTSHOME ]; then
+                mkdir $REPORTSHOME
+        fi
+
+	if [ ! -d $TGMSAHOME/reports/$DATE ]; then
+		mkdir $TGMSAHOME/reports/$DATE
 	fi
-	bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ',' >> $TGMSAHOME/$DATE/report-$DATE.csv
+	bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ',' >> $TGMSAHOME/reports/$DATE/report-$DATE.csv
 
 # get open hours from Db
 	OPENHOUR=`bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ','|cut -d "," -f1` &>/dev/null
@@ -37,5 +42,5 @@ for i in $(seq 393 395); do
 #######################################
 
 	BOXNAME=`mysql accoDb -e "select nazwaUzytkownika from Zdarzenie where (idUzytkownik = $i)"|sort -u|grep -v nazwaUzytkownika`
-	echo $BOXNAME,$TIMEOPEN >> $TGMSAHOME/$DATE/report-$DATE.csv
+	echo $BOXNAME,$TIMEOPEN >> $TGMSAHOME/reports/$DATE/report-$DATE.csv
 done
