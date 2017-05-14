@@ -14,7 +14,7 @@ STARTTIMESEC=28800
 ENDTIMESEC=64800
 
 #DATE=`date +"%Y-%m-%d"`
-DATE="2017-05-08"
+DATE="2017-05-09"
 
 for i in $(seq 406 415); do
 	cd $TGMSAHOME
