@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: "GET",
-        url:"report-2017-04-01.csv",
+        url:"http://tgmhala.vipkam.pl:8000/2017-05-11/report-2017-05-11.csv",
         dataType: "text",
         success: function (data) { processData(data); }
     });
@@ -31,7 +31,17 @@ $(document).ready(function () {
     var chart = new CanvasJS.Chart("chartContainer", {
         theme: "theme2",
         title: {
-            text: "Basic Column Chart – CanvasJS"
+            text: "VipKam - Report"
+        },
+        axisX:{
+            title : "[ Numer BOXu ]",
+            titleFontFamily: "comic sans ms",
+            titleFontColor : "steelBlue",
+        },
+        axisY:{
+            title : "[ Ilosc przepracowanych godzin ]",
+            titleFontFamily: "comic sans ms",
+            titleFontColor : "steelBlue",
         },
         data: [
         {
@@ -43,7 +53,7 @@ $(document).ready(function () {
 
 });
 </script>
-<script type="text/javascript" src="canvasjs.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
 </head>
 <body>
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>

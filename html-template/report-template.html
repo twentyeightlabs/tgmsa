@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: "GET",
-        url:"dane.txt",
+        url:"http://tgmhala.vipkam.pl:8000/INSERT-DATE/report-INSERT-DATE.csv",
         dataType: "text",
         success: function (data) { processData(data); }
     });
@@ -20,18 +20,28 @@ $(document).ready(function () {
             for (var i = 0; i <= allLinesArray.length - 1; i++) {
 	        var rowData = allLinesArray[i].split(',');
 	        if(rowData && rowData.length > 1)
-	            dataPoints.push({ x: parseInt(rowData[0]), y: parseFloat(rowData[1]), label: rowData[2] });
+	            dataPoints.push({ y: parseFloat(rowData[3]), label: rowData[2] });
             }
             chart.options.data[0].dataPoints = dataPoints;
             chart.render();
         }
     }
 
-            
+
     var chart = new CanvasJS.Chart("chartContainer", {
         theme: "theme2",
         title: {
-            text: "Basic Column Chart – CanvasJS"
+            text: "VipKam - Report"
+        },
+        axisX:{
+            title : "[ Numer BOXu ]",
+            titleFontFamily: "comic sans ms",
+            titleFontColor : "steelBlue",
+        },
+        axisY:{
+            title : "[ Ilosc przepracowanych godzin ]",
+            titleFontFamily: "comic sans ms",
+            titleFontColor : "steelBlue",
         },
         data: [
         {
@@ -40,10 +50,10 @@ $(document).ready(function () {
         }
         ]
     });
-            
+
 });
 </script>
-<script type="text/javascript" src="canvasjs.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
 </head>
 <body>
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
