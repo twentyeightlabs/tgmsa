@@ -10,8 +10,8 @@ CLOSEHOURSEC
 TIMEOPEN
 TIMEOPENSEC
 
-STARTTIMESEC=`echo "08:00:00" | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
-ENDTIMESEC=`echo "16:00:00" | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
+STARTWORKSEC=`echo "08:00:00" | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
+ENDWORKSEC=`echo "16:00:00" | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
 
 #DATE=`date +"%Y-%m-%d"`
 DATE="2017-05-09"
@@ -31,21 +31,21 @@ for i in $(seq 406 415); do
 	OPENHOUR=`bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ','|cut -d "," -f1`
 	OPENHOURSEC=`echo $OPENHOUR | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
 
-	if [ $OPENHOURSEC -le $STARTTIMESEC ]; then
-		OPENHOURSEC=$STARTTIMESEC
+	if [ $OPENHOURSEC -le $STARTWORKSEC ]; then
+		OPENHOURSEC=$STARTWORKSEC
 	fi
 #	echo orig open $OPENHOUR
-#	echo new open $STARTTIMESEC
+#	echo new open $STARTWORKSEC
 
 	CLOSEHOUR=`bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ','|cut -d "," -f2`
 	CLOSEHOURSEC=`echo $CLOSEHOUR | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
 
-	if [ $CLOSEHOURSEC -ge $ENDTIMESEC ]; then
-		CLOSEHOURSEC=$ENDTIMESEC
+	if [ $CLOSEHOURSEC -ge $ENDWORKSEC ]; then
+		CLOSEHOURSEC=$ENDWORKSEC
 	fi
 
 #	echo orig close $CLOSEHOUR
-#        echo new close $ENDTIMESEC
+#        echo new close $ENDWORKSEC
 
 	TIMEOPENSEC=`expr $CLOSEHOURSEC - $OPENHOURSEC`
 	TIMEOPEN=`date -d @$TIMEOPENSEC +%H:%M:%S`
