@@ -133,3 +133,9 @@ footer ul li a {
 section.contact ul.list-social li.social-instagram a {
     background-color: red;
 }
+
+section.download {
+    color:black;
+    background: white;
+}
+
