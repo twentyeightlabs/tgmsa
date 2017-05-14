@@ -30,8 +30,18 @@ for i in $(seq 406 415); do
 # get open hours from Db
 	OPENHOUR=`bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ','|cut -d "," -f1`
 	OPENHOURSEC=`echo $OPENHOUR | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
+
+	if [ $OPENHOURSEC -le $STARTTIMESEC ]; then
+		$OPENHOURSEC=$STARTTIMESEC
+	fi
+
 	CLOSEHOUR=`bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ','|cut -d "," -f2`
 	CLOSEHOURSEC=`echo $CLOSEHOUR | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
+
+	if [ $CLOSEHOURSEC -ge $ENDTIMESEC ]; then
+		$CLOSEHOURSEC=$ENDTIMESEC
+	fi
+
 	TIMEOPENSEC=`expr $CLOSEHOURSEC - $OPENHOURSEC`
 	TIMEOPEN=`date -d @$TIMEOPENSEC +%H:%M:%S`
 
