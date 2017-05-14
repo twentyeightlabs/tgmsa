@@ -139,3 +139,7 @@ section.download {
     background: white;
 }
 
+button, input, select, textarea {
+    color: black;
+}
+
