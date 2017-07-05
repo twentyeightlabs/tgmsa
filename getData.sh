@@ -72,3 +72,9 @@ done
 sed -i "s/:/./g" $REPORTSHOME/$DATE/report-$DATE.csv
 cp html-template/report-template.html $REPORTSHOME/$DATE/report-$DATE.html
 sed -i "s/INSERT-DATE/$DATE/g" $REPORTSHOME/$DATE/report-$DATE.html
+
+monthlyReport()
+
+monthlyReport() {
+	echo "raport miesieczny"
+}
