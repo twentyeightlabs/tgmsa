@@ -15,6 +15,7 @@ ENDWORKSEC=`echo "16:00:00" | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
 
 #DATE=`date +"%Y-%m-%d"`
 DATE="2017-05-11"
+MDATE=`date +"%m_%Y"`
 
 for i in $(seq 406 415); do
 	cd $TGMSAHOME
@@ -74,7 +75,14 @@ cp html-template/report-template.html $REPORTSHOME/$DATE/report-$DATE.html
 sed -i "s/INSERT-DATE/$DATE/g" $REPORTSHOME/$DATE/report-$DATE.html
 
 monthlyReport() {
-	MDATE=DAYDATE=`date +"%m_%Y"`
+	cd $TGMSAHOME
+	if [ ! -d $REPORTSHOME ]; then
+                mkdir $REPORTSHOME
+        fi
+
+	if [ ! -d $TGMSAHOME/reports/$MDATE ]; then
+		mkdir $TGMSAHOME/reports/$MDATE
+	fi
 	echo "raport miesieczny ${MDATE}"
 }
 
