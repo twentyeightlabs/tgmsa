@@ -16,7 +16,7 @@ ENDWORKSEC=`echo "16:00:00" | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
 #DATE=`date +"%Y-%m-%d"`
 DATE="2017-05-11"
 #MDATE=`date +"%m-%Y"`
-MDATE="2017-05-11"
+MDATE="05-2017"
 
 for i in $(seq 406 415); do
 	cd $TGMSAHOME
@@ -86,11 +86,11 @@ monthlyReport() {
 	fi
 	echo "raport miesieczny ${MDATE}"
 
-	for i in $(seq 406 415); do
-		cd $TGMSAHOME
-		bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ',' > $TGMSAHOME/reports/$MDATE/report-$DATE-temp.csv
+	# for i in $(seq 406 415); do
+	# 	cd $TGMSAHOME
+	# 	bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ',' > $TGMSAHOME/reports/$MDATE/report-$DATE-temp.csv
 
-	done
+	# done
 
 }
 
