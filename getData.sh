@@ -77,4 +77,4 @@ monthlyReport() {
 	echo "raport miesieczny"
 }
 
-monthlyReport()
+monthlyReport
