@@ -27,7 +27,7 @@ for i in $(seq 406 415); do
 	if [ ! -d $TGMSAHOME/reports/$DATE ]; then
 		mkdir $TGMSAHOME/reports/$DATE
 	fi
-	bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ','> BOX $i > $TGMSAHOME/reports/$MDATE/report-$MDATE-temp.csv
+	bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ',' > $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
 
 # get open hours from Db
 	OPENHOUR=`bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ','|cut -d "," -f1`
