@@ -74,7 +74,8 @@ cp html-template/report-template.html $REPORTSHOME/$DATE/report-$DATE.html
 sed -i "s/INSERT-DATE/$DATE/g" $REPORTSHOME/$DATE/report-$DATE.html
 
 monthlyReport() {
-	echo "raport miesieczny"
+	MDATE=DAYDATE=`date +"%m_%Y"`
+	echo "raport miesieczny ${MDATE}"
 }
 
 monthlyReport
