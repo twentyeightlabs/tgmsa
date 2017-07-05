@@ -15,7 +15,8 @@ ENDWORKSEC=`echo "16:00:00" | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
 
 #DATE=`date +"%Y-%m-%d"`
 DATE="2017-05-11"
-MDATE=`date +"%m_%Y"`
+#MDATE=`date +"%m-%Y"`
+MDATE="2017-05-11"
 
 for i in $(seq 406 415); do
 	cd $TGMSAHOME
@@ -26,7 +27,7 @@ for i in $(seq 406 415); do
 	if [ ! -d $TGMSAHOME/reports/$DATE ]; then
 		mkdir $TGMSAHOME/reports/$DATE
 	fi
-	bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ',' > $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
+	bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ','> BOX $i > $TGMSAHOME/reports/$MDATE/report-$MDATE-temp.csv
 
 # get open hours from Db
 	OPENHOUR=`bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ','|cut -d "," -f1`
@@ -84,6 +85,54 @@ monthlyReport() {
 		mkdir $TGMSAHOME/reports/$MDATE
 	fi
 	echo "raport miesieczny ${MDATE}"
+
+	for i in $(seq 406 415); do
+	cd $TGMSAHOME
+
+	bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ',' > $TGMSAHOME/reports/$MDATE/report-$DATE-temp.csv
+
+# get open hours from Db
+	OPENHOUR=`bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ','|cut -d "," -f1`
+	OPENHOURSEC=`echo $OPENHOUR | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
+
+	if [ $OPENHOURSEC -le $STARTWORKSEC ]; then
+		OPENHOURSEC=$STARTWORKSEC
+#	elif [ $OPENHOUR =~ ^[0-9][0-9]:[0-9][0-9]:[0-9][0-9]$ ]; then
+#		OPENHOURSEC=0
+#		echo z warunku $OPENHOURSEC
+	fi
+#	echo orig open /$OPENHOUR/
+#	echo new open $STARTWORKSEC
+
+	CLOSEHOUR=`bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ','|cut -d "," -f2`
+	CLOSEHOURSEC=`echo $CLOSEHOUR | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
+
+	if [ $CLOSEHOURSEC -ge $ENDWORKSEC ]; then
+		CLOSEHOURSEC=$ENDWORKSEC
+	fi
+
+#	echo orig close $CLOSEHOUR
+#        echo new close $ENDWORKSEC
+
+	TIMEOPENSEC=`expr $CLOSEHOURSEC - $OPENHOURSEC`
+	TIMEOPEN=`date -d @$TIMEOPENSEC +%H:%M:%S`
+	echo ------ czas otwarcia: $TIMEOPEN ------
+
+########DEBUG MESSAGES#################
+#	echo open $OPENHOUR
+#	echo opensec $OPENHOURSEC
+#	echo close $CLOSEHOUR
+#	echo closesec $CLOSEHOURSEC
+#	echo timeopensec $TIMEOPENSEC
+#	echo timeopen $TIMEOPEN
+#######################################
+
+	BOXNAME=`mysql accoDb -e "select nazwaUzytkownika from Zdarzenie where (idUzytkownik = $i)"|sort -u|grep -v nazwaUzytkownika`
+	echo $BOXNAME,$TIMEOPEN >> $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
+	cat $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv >> $TGMSAHOME/reports/$DATE/report-$DATE.csv
+	rm -r $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
+done
+
 }
 
 monthlyReport
