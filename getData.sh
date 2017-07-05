@@ -87,10 +87,11 @@ monthlyReport() {
 	echo "raport miesieczny ${MDATE}"
 
 	for i in $(seq 406 415); do
-	cd $TGMSAHOME
+		cd $TGMSAHOME
+		bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ',' > $TGMSAHOME/reports/$MDATE/report-$DATE-temp.csv
 
-	bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ',' > $TGMSAHOME/reports/$MDATE/report-$DATE-temp.csv
-	
+	done
+
 }
 
 monthlyReport
