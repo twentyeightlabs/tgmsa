@@ -97,9 +97,9 @@ for i in $(seq 406 415); do
 	echo "tymczasowy: ${TMP}"
 	echo "tymczasowy2: ${TIMEOPEN}"
 
-	echo $TIMEOPENSEC >> $TGMSAHOME/reports/$MDATE/BOX-$i.csv
+	echo $TMP >> $TGMSAHOME/reports/$MDATE/BOX-$i.csv
 
-	
+
 	############# End Generate data for monthly report ##########################
 
 	cat $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv >> $TGMSAHOME/reports/$DATE/report-$DATE.csv
