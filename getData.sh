@@ -74,20 +74,32 @@ for i in $(seq 406 415); do
 	echo $BOXNAME,$TIMEOPEN >> $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
 
 	#############Generate data for monthly report##########################
+
+
 	if [ ! -f $TGMSAHOME/reports/$MDATE/BOX-$i.csv ]; then
 		touch $TGMSAHOME/reports/$MDATE/BOX-$i.csv
 	fi
 
 	TMP=`cat $TGMSAHOME/reports/$MDATE/BOX-$i.csv`
 
-	if [ $TMP -le 0 ]; then
-		TMP=0
+	if [ -s $TGMSAHOME/reports/$MDATE/BOX-$i.csv ]; then
+			echo "File not empty"
+			if [ "$TMP" -le 0 ]; then
+					TMP=0
+			fi
+	else
+			echo "File empty"
+			TMP=0
+
 	fi
+
 
 	echo "tymczasowy: ${TMP}"
 	echo "tymczasowy2: ${TIMEOPEN}"
 
 	echo $TIMEOPENSEC >> $TGMSAHOME/reports/$MDATE/BOX-$i.csv
+
+	
 	############# End Generate data for monthly report ##########################
 
 	cat $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv >> $TGMSAHOME/reports/$DATE/report-$DATE.csv
