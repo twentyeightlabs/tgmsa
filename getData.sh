@@ -79,6 +79,11 @@ for i in $(seq 406 415); do
 	fi
 
 	TMP=`cat $TGMSAHOME/reports/$MDATE/BOX-$i.csv`
+
+	if [ $TMP -le 0 ]; then
+		TMP=0
+	fi
+
 	echo "tymczasowy: ${TMP}"
 	echo "tymczasowy2: ${TIMEOPEN}"
 
