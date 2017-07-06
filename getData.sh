@@ -22,11 +22,16 @@ for i in $(seq 406 415); do
 	cd $TGMSAHOME
 	if [ ! -d $REPORTSHOME ]; then
                 mkdir $REPORTSHOME
-        fi
+    fi
 
 	if [ ! -d $TGMSAHOME/reports/$DATE ]; then
 		mkdir $TGMSAHOME/reports/$DATE
 	fi
+
+	if [ ! -d $TGMSAHOME/reports/$MDATE ]; then
+		mkdir $TGMSAHOME/reports/$MDATE
+	fi
+
 	bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ',' > $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
 
 # get open hours from Db
@@ -67,6 +72,11 @@ for i in $(seq 406 415); do
 
 	BOXNAME=`mysql accoDb -e "select nazwaUzytkownika from Zdarzenie where (idUzytkownik = $i)"|sort -u|grep -v nazwaUzytkownika`
 	echo $BOXNAME,$TIMEOPEN >> $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
+
+	#Generate data for monthly report
+	echo $TIMEOPENSEC >> $TGMSAHOME/reports/$MDATE/BOX-$i.csv
+	#End Generate data for monthly report
+
 	cat $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv >> $TGMSAHOME/reports/$DATE/report-$DATE.csv
 	rm -r $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
 done
@@ -74,24 +84,3 @@ done
 sed -i "s/:/./g" $REPORTSHOME/$DATE/report-$DATE.csv
 cp html-template/report-template.html $REPORTSHOME/$DATE/report-$DATE.html
 sed -i "s/INSERT-DATE/$DATE/g" $REPORTSHOME/$DATE/report-$DATE.html
-
-monthlyReport() {
-	cd $TGMSAHOME
-	if [ ! -d $REPORTSHOME ]; then
-                mkdir $REPORTSHOME
-        fi
-
-	if [ ! -d $TGMSAHOME/reports/$MDATE ]; then
-		mkdir $TGMSAHOME/reports/$MDATE
-	fi
-	echo "raport miesieczny ${MDATE}"
-
-	for i in $(seq 406 415); do
-		cd $TGMSAHOME
-		bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ',' > BOX $i > $TGMSAHOME/reports/$MDATE/report-$MDATE-temp.csv
-
-	done
-
-}
-
-monthlyReport
