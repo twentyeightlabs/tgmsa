@@ -80,6 +80,7 @@ for i in $(seq 406 415); do
 
 	TMP=`cat $TGMSAHOME/reports/$MDATE/BOX-$i.csv`
 	echo "tymczasowy: ${TMP}"
+	echo "tymczasowy: ${TIMEOPEN}"
 
 	echo $TIMEOPENSEC >> $TGMSAHOME/reports/$MDATE/BOX-$i.csv
 	############# End Generate data for monthly report ##########################
