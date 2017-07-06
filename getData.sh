@@ -73,9 +73,16 @@ for i in $(seq 406 415); do
 	BOXNAME=`mysql accoDb -e "select nazwaUzytkownika from Zdarzenie where (idUzytkownik = $i)"|sort -u|grep -v nazwaUzytkownika`
 	echo $BOXNAME,$TIMEOPEN >> $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
 
-	#Generate data for monthly report
+	#############Generate data for monthly report##########################
+	if [ ! -f $TGMSAHOME/reports/$MDATE/BOX-$i.csv ]; then
+		touch $TGMSAHOME/reports/$MDATE/BOX-$i.csv
+	fi
+
+	TMP=`cat $TGMSAHOME/reports/$MDATE/BOX-$i.csv`
+	echo "tymczasowy: ${TMP}"
+
 	echo $TIMEOPENSEC >> $TGMSAHOME/reports/$MDATE/BOX-$i.csv
-	#End Generate data for monthly report
+	############# End Generate data for monthly report ##########################
 
 	cat $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv >> $TGMSAHOME/reports/$DATE/report-$DATE.csv
 	rm -r $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
