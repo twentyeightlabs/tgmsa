@@ -92,6 +92,11 @@ for i in $(seq 406 415); do
 
 	echo $TMP2 > $TGMSAHOME/reports/$MDATE/BOX-$i.csv
 
+	TIMEOPENMONTH=`date -d @$echo $TMP2 +%H:%M:%S`
+	echo $TIMEOPENMONTH
+
+
+
 
 	############# End Generate data for monthly report ##########################
 
