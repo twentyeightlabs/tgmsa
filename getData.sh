@@ -92,7 +92,7 @@ for i in $(seq 406 415); do
 
 	echo $TMP2 > $TGMSAHOME/reports/$MDATE/BOX-$i.csv
 
-	TIMEOPENMONTH=`expr $TMP2 / 60`
+	TIMEOPENMONTH=`expr ($TMP2 / 60)/60`
 	echo "w godzinach ${TIMEOPENMONTH}"
 
 
