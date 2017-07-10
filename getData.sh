@@ -80,7 +80,7 @@ for i in $(seq 406 415); do
 
 
 	if [ ! -f $TGMSAHOME/reports/$MDATE/BOX-$i.csv ]; then
-			TMP22=$TIMEOPENSEC
+					TMP22=$TIMEOPENSEC
 	fi
 
 	TMP=`cat $TGMSAHOME/reports/$MDATE/BOX-$i.csv`
@@ -92,8 +92,11 @@ for i in $(seq 406 415); do
 
 	echo $TMP2 > $TGMSAHOME/reports/$MDATE/BOX-$i.csv
 
-	TIMEOPENMONTH=`expr ($TMP2 / 60)/60`
+	TIMEOPENMONTH=`expr $TMP2 / 60`
+	#TIMEOPENH=`expr $TIMEOPENMONTHN / 60`
 	echo "w godzinach ${TIMEOPENMONTH}"
+	echo "w godzinach2 ${TIMEOPENH} $(($TIMEOPENMONTH / 60)) $(($TIMEOPENMONTH % 60))"
+	echo "$(($TIMEOPENMONTH / 60)).$(($TIMEOPENMONTH % 60))"  > $TGMSAHOME/reports/$MDATE/BOX-$i-H.csv
 
 
 
