@@ -32,6 +32,10 @@ for i in $(seq 406 415); do
 		mkdir $TGMSAHOME/reports/$MDATE
 	fi
 
+	if [ ! -d $TGMSAHOME/reports/$MDATE/BOX-$i ]; then
+		mkdir $TGMSAHOME/reports/$MDATE/BOX-$i
+	fi	
+
 	bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ',' > $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
 
 # get open hours from Db
@@ -79,24 +83,25 @@ for i in $(seq 406 415); do
 	#############Generate data for monthly report##########################
 
 
-	if [ ! -f $TGMSAHOME/reports/$MDATE/BOX-$i.csv ]; then
+	if [ ! -f $TGMSAHOME/reports/$MDATE/BOX-$i/BOX-$i.csv ]; then
 					TMP22=$TIMEOPENSEC
 	fi
 
-	TMP=`cat $TGMSAHOME/reports/$MDATE/BOX-$i.csv`
+	TMP=`cat $TGMSAHOME/reports/$MDATE/BOX-$i/BOX-$i.csv`
 
 	TMP2=$((TMP+$TIMEOPENSEC))
 
 	echo "tymczasowy: ${TMP} ${TMP2}"
 	echo "tymczasowy2: ${TIMEOPEN}"
 
-	echo $TMP2 > $TGMSAHOME/reports/$MDATE/BOX-$i.csv
+	echo $TMP2 > $TGMSAHOME/reports/$MDATE/BOX-$i/BOX-$i.csv
 
 	TIMEOPENMONTH=`expr $TMP2 / 60`
 	#TIMEOPENH=`expr $TIMEOPENMONTHN / 60`
 	echo "w godzinach ${TIMEOPENMONTH}"
 	echo "w godzinach2 ${TIMEOPENH} $(($TIMEOPENMONTH / 60)) $(($TIMEOPENMONTH % 60))"
-	echo "$(($TIMEOPENMONTH / 60)).$(($TIMEOPENMONTH % 60))"  > $TGMSAHOME/reports/$MDATE/BOX-$i-H.csv
+	echo "$(($TIMEOPENMONTH / 60)).$(($TIMEOPENMONTH % 60))"  > $TGMSAHOME/reports/$MDATE/BOX-$i/BOX-$i-H.csv
+	cp html-template/report-template-monthly.html $REPORTSHOME/$MDATE/BOX-$i/BOX-$i-H.html
 
 
 
