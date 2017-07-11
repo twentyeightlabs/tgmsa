@@ -29,14 +29,14 @@
     <![endif]-->
 
 
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function () {
 
     $.ajax({
         type: "GET",
-        url:"http://tgmhala.vipkam.pl:8000/INSERT-DATE/report-INSERT-DATE.csv",
+        url:"https://tgmsa.vipkam.pl/INSERT-DATE/report-INSERT-DATE.csv",
         dataType: "text",
         success: function (data) { processData(data); }
     });
