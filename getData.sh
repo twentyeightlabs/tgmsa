@@ -123,8 +123,8 @@ sed -i "s/:/./g" $REPORTSHOME/$DATE/report-$DATE.csv
 cp html-template/report-template.html $REPORTSHOME/$DATE/report-$DATE.html
 sed -i "s/INSERT-DATE/$DATE/g" $REPORTSHOME/$DATE/report-$DATE.html
 
-cp html-template/report-template-monthly.html $REPORTSHOME/$MDATE/$MDATE.html
-sed -i "s/INSERT-DATE/$DATE/g" $REPORTSHOME/$MDATE/$MDATE.html
+cp html-template/monthly-all-box-template.html $REPORTSHOME/$MDATE/$MDATE.html
+sed -i "s/INSERT-MONTHLY-DATE/$MDATE/g" $REPORTSHOME/$MDATE/$MDATE.html
 
 rm -rf $TGMSAHOME/reports/$MDATE/all-data.csv
 cat $TGMSAHOME/reports/$MDATE/$MDATE-BOX-*.csv > $TGMSAHOME/reports/$MDATE/all-data.csv
