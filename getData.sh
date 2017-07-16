@@ -101,7 +101,7 @@ for i in $(seq 406 415); do
 	echo "w godzinach ${TIMEOPENMONTH}"
 	echo "w godzinach2 ${TIMEOPENH} $(($TIMEOPENMONTH / 60)) $(($TIMEOPENMONTH % 60))"
 	echo "$(($TIMEOPENMONTH / 60)).$(($TIMEOPENMONTH % 60))"  > $TGMSAHOME/reports/$MDATE/BOX-$i/BOX-$i-H.csv
-	echo "BOX-$i:$(($TIMEOPENMONTH / 60)).$(($TIMEOPENMONTH % 60))"  > $TGMSAHOME/reports/$MDATE/$MDATE.csv
+	echo "BOX-$i:$(($TIMEOPENMONTH / 60)).$(($TIMEOPENMONTH % 60))"  > $TGMSAHOME/reports/$MDATE/$MDATE-BOX-$i.csv
 	cp html-template/report-template-monthly.html $REPORTSHOME/$MDATE/BOX-$i/BOX-$i-H.html
 	sed -i "s/INSERT-MONTHLY-DATE/$MDATE/g" $REPORTSHOME/$MDATE/BOX-$i/BOX-$i-H.html
 	sed -i "s/INSERT-BOX-NUMBER/$i/g" $REPORTSHOME/$MDATE/BOX-$i/BOX-$i-H.html
@@ -121,3 +121,5 @@ done
 sed -i "s/:/./g" $REPORTSHOME/$DATE/report-$DATE.csv
 cp html-template/report-template.html $REPORTSHOME/$DATE/report-$DATE.html
 sed -i "s/INSERT-DATE/$DATE/g" $REPORTSHOME/$DATE/report-$DATE.html
+rm -rf $TGMSAHOME/reports/$MDATE/all-data.csv
+cat $TGMSAHOME/reports/$MDATE/$MDATE-BOX-*.csv > $TGMSAHOME/reports/$MDATE/all-data.csv
