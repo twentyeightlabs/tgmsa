@@ -139,6 +139,13 @@ section.download {
     background: white;
 }
 
+.detailed-report {
+    color:black;
+    background: white;
+    height: 50px;
+    margin-top: -110px;
+}
+
 button, input, select, textarea {
     color: black;
 }
