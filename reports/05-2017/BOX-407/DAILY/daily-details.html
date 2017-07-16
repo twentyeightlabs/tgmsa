@@ -19,7 +19,7 @@
     <!-- Theme CSS -->
     <link href="https://tgmsa.vipkam.pl/css/new-age.min.css" rel="stylesheet">
 
-    <link href="../css/custom.css" rel="stylesheet">
+    <link href="https://tgmsa.vipkam.pl/css/custom.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,7 +36,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: "GET",
-        url:"https://tgmsa.vipkam.pl/05-2017/all-data.csv",
+        url:"BOX-410-DAILY.csv",
         dataType: "text",
         success: function (data) { processData(data); }
     });
@@ -59,10 +59,10 @@ $(document).ready(function () {
     var chart = new CanvasJS.Chart("chartContainer", {
         theme: "theme2",
         title: {
-            text: "Raport przepracowanych godzin w miesiącu - 05-2017"
+            text: "Raport szczegółowy dla BOX-210"
         },
         axisX:{
-            title : "[ Numer BOXu ]",
+            title : "[ Data ]",
             titleFontFamily: "comic sans ms",
             titleFontColor : "steelBlue",
         },
@@ -131,22 +131,6 @@ $(document).ready(function () {
                 </div>
             </div>
         </header>
-
-        <section id="details" class="detailed-report text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <!--<h2 class="section-heading">Discover what all the buzz is about!</h2>-->
-                        <p>Aby zobaczyć szczęgóły, proszę wybrać numer BOXu:</p>
-                        <select onchange="self.location.href = this.value">
-                        <option VALUE="">wybierz:</option>
-                        <option VALUE="https://tgmsa.vipkam.pl/05-2017/BOX-407/DAILY/daily-details.html">BOX-407</option>
-                        <option VALUE="https://tgmsa.vipkam.pl/05-2017/BOX-410/DAILY/daily-details.html">BOX-410</option>
-                    </select>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <div id="chartContainer" style="height: 300px; width: 100%;"></div>
         <!--<section id="about" class="download bg-primary text-center">
