@@ -14,7 +14,7 @@ STARTWORKSEC=`echo "06:00:00" | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'
 ENDWORKSEC=`echo "16:00:00" | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
 
 #DATE=`date +"%Y-%m-%d"`
-DATE="2017-05-11"
+DATE="2017-05-10"
 #MDATE=`date +"%m-%Y"`
 MDATE="05-2017"
 
