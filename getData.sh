@@ -111,6 +111,9 @@ for i in $(seq 406 415); do
 	sed -i "s/INSERT-MONTHLY-DATE/$MDATE/g" $REPORTSHOME/$MDATE/BOX-$i/BOX-$i-H.html
 	sed -i "s/INSERT-BOX-NUMBER/$i/g" $REPORTSHOME/$MDATE/BOX-$i/BOX-$i-H.html
 
+	cp html-template/report-detailed-template.html $TGMSAHOME/reports/$MDATE/BOX-$i/DAILY/daily-details.html
+	sed -i "s/INSERT-MONTHLY-DATE/$MDATE/g" $TGMSAHOME/reports/$MDATE/BOX-$i/DAILY/daily-details.html
+	sed -i "s/INSERT-BOX-NUMBER/$i/g" $TGMSAHOME/reports/$MDATE/BOX-$i/DAILY/daily-details.html
 
 
 
