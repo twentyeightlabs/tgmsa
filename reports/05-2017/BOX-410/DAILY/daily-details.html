@@ -36,7 +36,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: "GET",
-        url:"BOX-410-DAILY.csv",
+        url:"https://tgmsa.vipkam.pl/05-2017/BOX-410/DAILY/BOX-410-DAILY.csv",
         dataType: "text",
         success: function (data) { processData(data); }
     });
@@ -59,7 +59,7 @@ $(document).ready(function () {
     var chart = new CanvasJS.Chart("chartContainer", {
         theme: "theme2",
         title: {
-            text: "Raport szczegółowy dla BOX-210"
+            text: "Raport szczegółowy dla BOX-NSERT-BOX-NUMBER"
         },
         axisX:{
             title : "[ Data ]",
