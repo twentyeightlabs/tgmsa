@@ -14,7 +14,7 @@ STARTWORKSEC=`echo "06:00:00" | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'
 ENDWORKSEC=`echo "16:00:00" | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
 
 #DATE=`date +"%Y-%m-%d"`
-DATE="2017-05-11"
+DATE="2017-05-10"
 #MDATE=`date +"%m-%Y"`
 MDATE="05-2017"
 
@@ -108,6 +108,7 @@ for i in $(seq 406 415); do
 	echo "BOX-$i,$(($TIMEOPENMONTH / 60)).$(($TIMEOPENMONTH % 60))"  > $TGMSAHOME/reports/$MDATE/$MDATE-BOX-$i.csv
 	# echo "$DATE,$(($TIMEOPENMONTH / 60)).$(($TIMEOPENMONTH % 60))"  >> $TGMSAHOME/reports/$MDATE/BOX-$i/DAILY/BOX-$i-DAILY.csv
 	echo "$DATE,$TIMEOPEN" >> $TGMSAHOME/reports/$MDATE/BOX-$i/DAILY/BOX-$i-DAILY.csv
+	sed -i "s/:/./g" $TGMSAHOME/reports/$MDATE/BOX-$i/DAILY/BOX-$i-DAILY.csv
 	cp html-template/report-template-monthly.html $REPORTSHOME/$MDATE/BOX-$i/BOX-$i-H.html
 	sed -i "s/INSERT-MONTHLY-DATE/$MDATE/g" $REPORTSHOME/$MDATE/BOX-$i/BOX-$i-H.html
 	sed -i "s/INSERT-BOX-NUMBER/$i/g" $REPORTSHOME/$MDATE/BOX-$i/BOX-$i-H.html
