@@ -106,7 +106,8 @@ for i in $(seq 406 415); do
 	echo "w godzinach2 ${TIMEOPENH} $(($TIMEOPENMONTH / 60)) $(($TIMEOPENMONTH % 60))"
 	echo "$(($TIMEOPENMONTH / 60)).$(($TIMEOPENMONTH % 60))"  > $TGMSAHOME/reports/$MDATE/BOX-$i/BOX-$i-H.csv
 	echo "BOX-$i,$(($TIMEOPENMONTH / 60)).$(($TIMEOPENMONTH % 60))"  > $TGMSAHOME/reports/$MDATE/$MDATE-BOX-$i.csv
-	echo "$DATE,$(($TIMEOPENMONTH / 60)).$(($TIMEOPENMONTH % 60))"  >> $TGMSAHOME/reports/$MDATE/BOX-$i/DAILY/BOX-$i-DAILY.csv
+	# echo "$DATE,$(($TIMEOPENMONTH / 60)).$(($TIMEOPENMONTH % 60))"  >> $TGMSAHOME/reports/$MDATE/BOX-$i/DAILY/BOX-$i-DAILY.csv
+	echo "$DATE,$TIMEOPEN" >> $TGMSAHOME/reports/$MDATE/BOX-$i/DAILY/BOX-$i-DAILY.csv
 	cp html-template/report-template-monthly.html $REPORTSHOME/$MDATE/BOX-$i/BOX-$i-H.html
 	sed -i "s/INSERT-MONTHLY-DATE/$MDATE/g" $REPORTSHOME/$MDATE/BOX-$i/BOX-$i-H.html
 	sed -i "s/INSERT-BOX-NUMBER/$i/g" $REPORTSHOME/$MDATE/BOX-$i/BOX-$i-H.html
