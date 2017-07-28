@@ -40,7 +40,7 @@ for i in $(seq 406 415); do
 		mkdir $TGMSAHOME/reports/$MDATE/BOX-$i/DAILY
 	fi	
 
-	bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ',' > $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
+	#bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ',' > $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
 
 # get open hours from Db
 	OPENHOUR=`bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ','|cut -d "," -f1`
@@ -80,6 +80,8 @@ for i in $(seq 406 415); do
 
 	BOXNAME=`mysql accoDb -e "select nazwaUzytkownika from Zdarzenie where (idUzytkownik = $i)"|sort -u|grep -v nazwaUzytkownika`
 	echo $BOXNAME,$TIMEOPEN >> $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
+	echo $BOXNAME,$TIMEOPEN >> $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
+	sed -i "s/18.00.00/0/g" $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
 
 
 
