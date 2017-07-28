@@ -80,7 +80,6 @@ for i in $(seq 406 415); do
 
 	BOXNAME=`mysql accoDb -e "select nazwaUzytkownika from Zdarzenie where (idUzytkownik = $i)"|sort -u|grep -v nazwaUzytkownika`
 	echo $BOXNAME,$TIMEOPEN >> $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
-	echo $BOXNAME,$TIMEOPEN >> $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
 	sed -i "s/18.00.00/0/g" $TGMSAHOME/reports/$DATE/report-$DATE-temp.csv
 
 
