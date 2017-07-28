@@ -54,6 +54,7 @@ for i in $(seq 406 415); do
 	fi
 #	echo orig open /$OPENHOUR/
 #	echo new open $STARTWORKSEC
+	echo "tesssstuuuujemy: $OPENHOURSEC"
 
 	CLOSEHOUR=`bash $TGMSAHOME/dbData.sh $i | grep -v czas| grep $DATE | awk 'NR==1; END{print}'| sed "s/$DATE//g"|cut -d " " -f4|tr '\n' ','|cut -d "," -f2`
 	CLOSEHOURSEC=`echo $CLOSEHOUR | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }'`
@@ -93,9 +94,26 @@ for i in $(seq 406 415); do
 	fi
 
 	TMP=`cat $TGMSAHOME/reports/$MDATE/BOX-$i/BOX-$i.csv`
+	echo "test tyczasoweeeegooooo: $TMP"
+	#if [ "$TMP" -le 0 ]; then
+	#	TMP=0
+	#fi
+
+	echo "test po ustawieniu tymczasowego: $TMP"
 
 	TMP2=$((TMP+$TIMEOPENSEC))
+	
+	echo "test po ustawieniu tymczasowego: $TMP2"
 
+	if [ "$TMP2" -lt 0 ]; then
+               echo "correct"
+		echo "wyzeruj:"
+		TMP2=0
+		echo "po zerowaniu: $TMP2"
+        fi
+
+	echo "test po ustawieniu tymczasowego2222: $TMP2"
+	
 	echo "tymczasowy: ${TMP} ${TMP2}"
 	echo "tymczasowy2: ${TIMEOPEN}"
 
