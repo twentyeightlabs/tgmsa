@@ -2,8 +2,9 @@
 
 import MySQLdb
 import sys
+import time
 
-def main():
+def connectToDb():
     try:
         connection = MySQLdb.connect(host='127.0.0.1', user='tgmsa', passwd='password', db='accoDb')
         cursor=connection.cursor()
@@ -15,8 +16,18 @@ def main():
 
     for row in data:
         print row[1], row[11]
+#End connectToDb
 
-if __name__== "__main__":
-    main()
 
-print("hello")
+def getTime():
+    print time.asctime(time.localtime(time.time()))
+#End getTime
+
+
+def main():
+    connectToDb()
+    getTime()
+#End main
+
+
+main()
