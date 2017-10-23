@@ -1,15 +1,15 @@
 #!/usr/bin/python
 
-import MySQLdb
 import sys
+import MySQLdb
 import time
 import datetime
 import csv
 import os
 from contextlib import contextmanager
 
-tgmsa_home='/home/admin/tgmsa'
-report_dir=tgmsa_home+'/reports'
+tgmsa_home = '/home/admin/tgmsa'
+report_dir = tgmsa_home+'/reports'
 
 @contextmanager
 def db_connection(host, user, passwd, db):
@@ -46,7 +46,17 @@ def calculate_worked_time(data):
     print(start)
     print(end)
 
-    worked=end-start
+    if start == '0' or end == '0':
+        worked = '0,0'
+        start = '0,0'
+        end = '0,0'
+        worked = datetime.datetime.strptime(worked, '%H,%M')
+        start = datetime.datetime.strptime(start, '%H,%M')
+        end = datetime.datetime.strptime(end, '%H,%M')
+    else:
+        worked = end - start
+
+    #worked=end-start
     print(worked)
     return start.time().strftime('%H.%M'), end.time().strftime('%H.%M'), worked
 #End calculate_worked_time
@@ -60,24 +70,19 @@ def create_csv(box_id, start, end, worked, date=datetime.datetime.now()):
     with open(os.path.join(report_dir, yearly_report, monthly_report, daily_report, "box-{}.csv".format(box_id)), "a") as csv_file:
         writer = csv.writer(csv_file, delimiter=';')
         writer.writerow(["box-{}".format(box_id), start, end, worked])
-
-    with open(os.path.join(report_dir, yearly_reporti, monthly_report, "month-{}.csv".format(monthly_report)), "w") as csv_file:
-        writer = csv.writer(csv_file, delimiter=';')
-        writer.writerow(worked)
-
 #End create_csv
 
 
 def create_monthly_csv(box_id, start, end, worked, date=datetime.datetime.now()):
-    yearly_report=str(date.year)
-    monthly_report=str(date.month)
-    daily_report=str(date.day)
+    yearly_report = str(date.year)
+    monthly_report = str(date.month)
+    daily_report = str(date.day)
 
 
 def create_dir_structure(root_directory, date=datetime.datetime.now()):
-    yearly_report=str(date.year)
-    monthly_report=str(date.month)
-    daily_report=str(date.day)
+    yearly_report = str(date.year)
+    monthly_report = str(date.month)
+    daily_report = str(date.day)
 
     try:
         os.makedirs(os.path.join(root_directory, yearly_report, monthly_report, daily_report))
@@ -87,15 +92,16 @@ def create_dir_structure(root_directory, date=datetime.datetime.now()):
 
 
 def main():
+    """ Funcion """   
     print(tgmsa_home)
     print(report_dir)
     create_dir_structure(report_dir, date=datetime.date(2017, 05, 10) )
     #create_dir_structure(report_dir)
     #print(worked)
-    for box in range(413, 415):
-        data = get_data(box,day_start=datetime.date(2017, 05, 10))
+    for box in range(405, 417):
+        data = get_data(box, day_start=datetime.date(2017, 05, 10))
         start, end, worked = calculate_worked_time(data)
-        create_csv(box, start, end, worked, date=datetime.date(2017, 05, 10) )
+        create_csv(box, start, end, worked, date=datetime.date(2017, 05, 10))
         print(box)
 #End main
 
