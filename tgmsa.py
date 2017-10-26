@@ -50,7 +50,7 @@ def calculate_worked_time(data):
         worked = '0,0'
         start = '0,0'
         end = '0,0'
-        worked = datetime.datetime.strptime(worked, '%H,%M')
+        worked = datetime.time(0, 0, 0) # datetime.datetime.strptime(worked, '%H,%M')
         start = datetime.datetime.strptime(start, '%H,%M')
         end = datetime.datetime.strptime(end, '%H,%M')
     else:
@@ -62,21 +62,61 @@ def calculate_worked_time(data):
 #End calculate_worked_time
 
  
-def create_csv(box_id, start, end, worked, date=datetime.datetime.now()):
+def create_csv(root_directory, box_id, start, end, worked, date=datetime.datetime.now()):
     yearly_report=str(date.year)
     monthly_report=str(date.month)
     daily_report=str(date.day)
-    
-    with open(os.path.join(report_dir, yearly_report, monthly_report, daily_report, "box-{}.csv".format(box_id)), "a") as csv_file:
+    box_id_dir = str(box_id)
+   
+    try: 
+        os.makedirs(os.path.join(root_directory, yearly_report, monthly_report, daily_report, box_id_dir))
+    except:
+        pass
+
+    with open(os.path.join(report_dir, yearly_report, monthly_report, daily_report, box_id_dir, "box-{}.csv".format(box_id)), "w") as csv_file:
         writer = csv.writer(csv_file, delimiter=';')
         writer.writerow(["box-{}".format(box_id), start, end, worked])
+
+    with open(os.path.join(report_dir, yearly_report, monthly_report, daily_report, "all-daily-data.csv"), "a") as csv_file:
+        writer = csv.writer(csv_file, delimiter=';')
+        writer.writerow(["box-{}".format(box_id), worked])
+
+    with open(os.path.join(report_dir, yearly_report, monthly_report, daily_report,  box_id_dir, "all-{}.csv".format(box_id)), "a") as csv_file:
+        writer = csv.writer(csv_file, delimiter=';')
+        writer.writerow([worked])
+
+
+    with open(os.path.join(report_dir, yearly_report, monthly_report, daily_report, box_id_dir, "all-{}.csv".format(box_id)), "rb") as csv_file:
+        reader = csv.reader(csv_file)
+        for row in reader:
+            all_time = row[0]
+            print('czas caly: ', row)
+        all_time_split = all_time.split(':')
+        all_time = datetime.timedelta(hours=int(all_time_split[0]), minutes=int(all_time_split[1]), seconds=int(all_time_split[2]))
+        print('po split:', all_time)
+
+        with open(os.path.join(report_dir, yearly_report, monthly_report, daily_report, box_id_dir, "all-{}.csv".format(box_id)), "w") as csv_file:
+            writer = csv.writer(csv_file)
+            #writer.writerow([all_time + worked])
+
+
 #End create_csv
 
 
-def create_monthly_csv(box_id, start, end, worked, date=datetime.datetime.now()):
+def create_monthly_csv(root_directory, box_id, start, end, worked, date=datetime.datetime.now()):
     yearly_report = str(date.year)
     monthly_report = str(date.month)
     daily_report = str(date.day)
+    box_id_dir = str(box_id)
+
+    os.makedirs(os.path.join(root_directory, yearly_report, monthly_report, daily_report, box_id_dir))
+
+    with open(os.path.join(report_dir, yearly_report, monthly_report, daily_report, box_id_dir, "all-{}.csv".format(box_id)), "a") as csv_file:
+        writer = csv.writer(csv_file, delimiter=';')
+        writer.writerow([worked])
+
+
+#End create_monthly_csv
 
 
 def create_dir_structure(root_directory, date=datetime.datetime.now()):
@@ -101,7 +141,8 @@ def main():
     for box in range(405, 417):
         data = get_data(box, day_start=datetime.date(2017, 05, 10))
         start, end, worked = calculate_worked_time(data)
-        create_csv(box, start, end, worked, date=datetime.date(2017, 05, 10))
+        create_csv(report_dir, box, start, end, worked, date=datetime.date(2017, 05, 10))
+    #    create_monthly_csv(report_dir, box, start, end, worked, date=datetime.date(2017, 05, 10))
         print(box)
 #End main
 
