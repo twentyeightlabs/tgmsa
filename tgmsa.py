@@ -1,61 +1,73 @@
-#!/usr/bin/python
+#!/Library/Frameworks/Python.framework/Versions/3.6/bin/python3
+# coding=utf-8
 
-import sys
-import MySQLdb
-import time
-import datetime
-import csv
-import os
-import pandas as pd
+import pymysql.cursors
 import maya
-from contextlib import contextmanager
+import pandas as pd
+import os
 
-tgmsa_home = '/home/admin/tgmsa'
-report_dir = tgmsa_home+'/reports'
+reports_dir='/Users/stachu/work/tgmsa/reports'
 
-@contextmanager
-def db_connection(host, user, passwd, db):
-    try:
-        connection = MySQLdb.connect(host=host, user=user, passwd=passwd, db=db)
-        cursor = connection.cursor()
-        yield cursor
-    except Exception as e:
-        print(e)
-    finally:
-        cursor.close()
-        connection.close()
-#End db_connection
+eports_dir = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    'reports'
+)
+# tworzymy katalog jesli go nie ma
+#os.makedirs(reports_dir, exist_ok=True)
 
+# funkcja pobierająca informacje o czasu pracy boxów z bazy mysql
+def query_db(box_id, start_date=maya.now()):
+    # domyślna data poczatkowa to dzien dzisiejszy
+    # data końcowa to zawsze data początkowa + 1 dzień
+    end_date = start_date.add(days=1)
 
-def get_data(box_id, day_start=datetime.datetime.now()):
+    # daty w formie rozumianej przez mysql
+    start_date_text = start_date.datetime().strftime("%Y-%m-%d")
+    end_date_text = end_date.datetime().strftime("%Y-%m-%d")
 
-    day_end=day_start + datetime.timedelta(days=1)
-    day_start = day_start.strftime("%Y-%m-%d")
-    day_end = day_end.strftime("%Y-%m-%d")
+    # obiekt reprezentujacy polaczenie do bazy
+    # uzylem pymysqla zamiast MySQLdb bo nie chciało mi się zainstalować
+    connection = pymysql.connect(
+        host='localhost',
+        user='root',
+        password='root',
+        db='accoDb',
+        cursorclass=pymysql.cursors.DictCursor)
 
-    query=("SELECT czasZdarzenia, idStrefaWejsciowa, nazwaStrefyWejsciowej, nazwaStrefyWyjsciowej, idStrefaWyjsciowa, idKontroler, szczegoly, nazwaKontrolera FROM Zdarzenie a WHERE (idUzytkownik = %s) AND (kodZdarzenia = 263) AND (czasZdarzenia >= %s) AND (czasZdarzenia < %s) AND (idStrefaWejsciowa = '1' OR idStrefaWyjsciowa = '1') AND (SUBSTR(CONV(HEX(szczegoly),16,2), -12, 1) !=1) ORDER BY czasZdarzenia ASC;")
-    with db_connection('127.0.0.1', 'tgmsa', 'password', 'accoDb') as db:
-        db.execute(query, (box_id, day_start, day_end))
-        data = db.fetchall() or ('0,0')
-        #print(data)
-        return data
-#End get_data(
+    # lepiej tego nie tykać :D
+    query = ("SELECT czasZdarzenia, idStrefaWejsciowa, nazwaStrefyWejsciowej, nazwaStrefyWyjsciowej, idStrefaWyjsciowa, idKontroler, szczegoly, nazwaKontrolera FROM Zdarzenie a WHERE (idUzytkownik = %s) AND (kodZdarzenia = 263) AND (czasZdarzenia >= %s) AND (czasZdarzenia < %s) AND (idStrefaWejsciowa = '1' OR idStrefaWyjsciowa = '1') AND (SUBSTR(CONV(HEX(szczegoly),16,2), -12, 1) !=1) ORDER BY czasZdarzenia ASC;")
 
-def get_report():
-    test = pd.read_csv('/home/admin/tgmsa/reports/2017/5/10/410/box-410.csv', delimiter = ';')
-    print(test.head())
+    # panda jest w stanie stworzyć DataFrame wykorzystujac zapytanie SQL
+    df = pd.read_sql(query, connection,
+        params=(box_id, start_date_text, end_date_text))
 
+    # dodaj kolumne id boxa
+    df['box_id'] = box_id
+    #print(df.iloc[0])
+    #print(df.iloc[-1])
+    czasy = df['czasZdarzenia']
+
+    if czasy.empty:
+        start_work = maya.when('00:00:00')
+        stop_work = maya.when('00:00:00')
+        worked = 0
+        timesss = maya.MayaDT.datetime(stop_work)
+        print(timesss)
+        print('czas', timesss.time().strftime('%H.%M'))
+    else:
+        start_work = czasy.iloc[0]
+        stop_work = czasy.iloc[-1]
+        worked = stop_work - start_work
+
+    print(box_id, start_work, stop_work, worked)
+
+    return box_id, start_work, stop_work, worked
 
 
 def main():
-    """ Funcion """   
-    print(tgmsa_home)
-    print(report_dir)
-    for box in range(405, 417):
-        data = get_data(box, day_start=datetime.date(2017, 05, 10))
-        #print(datai)
-        get_report()
-#End main
+    for box in range(414, 415):
+        query_db(box, start_date=maya.when('2017-05-11'))
+    print('hello')
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
