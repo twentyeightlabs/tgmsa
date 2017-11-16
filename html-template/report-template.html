@@ -36,7 +36,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: "GET",
-        url:"https://tgmsa.vipkam.pl/INSERT-DATE/report-INSERT-DATE.csv",
+        url:"https://tgmsa.vipkam.pl/2017/INSERT-DATE/report-INSERT-DATE.csv",
         dataType: "text",
         success: function (data) { processData(data); }
     });
@@ -48,7 +48,7 @@ $(document).ready(function () {
             for (var i = 0; i <= allLinesArray.length - 1; i++) {
 	        var rowData = allLinesArray[i].split(',');
 	        if(rowData && rowData.length > 1)
-	            dataPoints.push({ y: parseFloat(rowData[3]), label: rowData[2] });
+	            dataPoints.push({ y: parseFloat(rowData[3]), label: rowData[0] });
             }
             chart.options.data[0].dataPoints = dataPoints;
             chart.render();
