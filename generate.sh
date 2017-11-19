@@ -83,5 +83,5 @@ sed -i "s/:/./g" $TGMSAHOME/reports/$YDATE/$MDATE/all-data.csv
 #end montrly report
 
 #replace in main index.html
-sed -i "/INSERT HERE/a <option VALUE='https://tgmsa.vipkam.pl/$YDATE/$DATE/report-$DATE.html'>$REPORTDATE</option>" $TGMSAHOME/reports/index.html
+sed -i "/INSERT HERE DAILY/a <option VALUE='https://tgmsa.vipkam.pl/$YDATE/$DATE/report-$DATE.html'>$REPORTDATE</option>" $TGMSAHOME/reports/index.html
 #end replace in main index.html
