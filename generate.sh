@@ -18,7 +18,7 @@ YDATE="2017"
 
 
 echo $TGMSAHOME
-for i in 200 201; do
+for i in 8 22 28 30 200 217 219; do
 #for i in $(seq 200 201); do
 	cd $TGMSAHOME
 	if [ ! -d $REPORTSHOME ]; then
