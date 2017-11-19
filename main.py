@@ -20,7 +20,7 @@ def query_db(box_id, start_date=maya.now()):
     db_end_date = end_date_text + ' 00:00:00'
 
     connection = pymysql.connect(
-        host='localhost',
+        host='192.168.0.15', #localhost
         user='root',
         password='root',
         db='accoDb',

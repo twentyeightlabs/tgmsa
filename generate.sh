@@ -1,6 +1,7 @@
 #/bin/bash
 
-TGMSAHOME=`pwd`
+#TGMSAHOME=`pwd`
+TGMSAHOME='/Users/stachu/work/tgmsa-reports/'
 REPORTSHOME=$TGMSAHOME/reports
 
 #DATE=`date +"%Y-%m-%d"`
@@ -75,5 +76,5 @@ sed -i "s/:/./g" $TGMSAHOME/reports/$YDATE/$DATE/report-$DATE.html
 cp html-template/monthly-all-box-template.html $REPORTSHOME/$YDATE/$MDATE/$MDATE.html
 sed -i "s/INSERT-MONTHLY-DATE/$MDATE/g" $REPORTSHOME/$YDATE/$MDATE/$MDATE.html
 cat $TGMSAHOME/reports/$YDATE/$MDATE/$MDATE-BOX-*.csv > $TGMSAHOME/reports/$YDATE/$MDATE/all-data.csv
-sed -i "s/:/./g" TGMSAHOME/reports/$YDATE/$MDATE/all-data.csv
+sed -i "s/:/./g" $TGMSAHOME/reports/$YDATE/$MDATE/all-data.csv
 #end montrly report
