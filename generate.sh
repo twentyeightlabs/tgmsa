@@ -10,6 +10,8 @@ DATE="2017-11-02"
 REPORTDATE="02-11-2017"
 #MDATE=`date +"%Y-%m"`
 MDATE="2017-11"
+#MREPORTDATE=`date +"%m-%Y"`
+MREPORTDATE="11-2017"
 #YDATE=`date +"%Y"`
 YDATE="2017"
 
@@ -84,4 +86,10 @@ sed -i "s/:/./g" $TGMSAHOME/reports/$YDATE/$MDATE/all-data.csv
 
 #replace in main index.html
 sed -i "/INSERT HERE DAILY/a <option VALUE='https://tgmsa.vipkam.pl/$YDATE/$DATE/report-$DATE.html'>$REPORTDATE</option>" $TGMSAHOME/reports/index.html
+
+grep -rH "https://tgmsa.vipkam.pl/$YDATE/$MDATE/$MDATE.html" $TGMSAHOME/reports/index.html
+if [ $? -eq 1 ]; then
+	sed -i "/INSERT HERE MONTHLY/a <option VALUE='https://tgmsa.vipkam.pl/$YDATE/$MDATE/$MDATE.html'>$MREPORTDATE</option>" $TGMSAHOME/reports/index.html
+fi
+
 #end replace in main index.html
