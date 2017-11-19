@@ -6,6 +6,8 @@ REPORTSHOME=$TGMSAHOME/reports
 
 #DATE=`date +"%Y-%m-%d"`
 DATE="2017-11-02"
+#REPORTDATE=`date +"%d-%m-%Y"`
+REPORTDATE="02-11-2017"
 #MDATE=`date +"%Y-%m"`
 MDATE="2017-11"
 #YDATE=`date +"%Y"`
@@ -79,3 +81,7 @@ sed -i "s/INSERT-MONTHLY-DATE/$MDATE/g" $REPORTSHOME/$YDATE/$MDATE/$MDATE.html
 cat $TGMSAHOME/reports/$YDATE/$MDATE/$MDATE-BOX-*.csv > $TGMSAHOME/reports/$YDATE/$MDATE/all-data.csv
 sed -i "s/:/./g" $TGMSAHOME/reports/$YDATE/$MDATE/all-data.csv
 #end montrly report
+
+#replace in main index.html
+sed -i "/INSERT HERE/a <option VALUE='https://tgmsa.vipkam.pl/$YDATE/$DATE/report-$DATE.html'>$REPORTDATE</option>" index.html
+#end replace in main index.html
