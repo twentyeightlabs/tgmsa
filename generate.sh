@@ -5,9 +5,9 @@ TGMSAHOME='/Users/stachu/work/tgmsa-reports/'
 REPORTSHOME=$TGMSAHOME/reports
 
 #DATE=`date +"%Y-%m-%d"`
-DATE="2017-11-03"
+DATE="2017-11-02"
 #REPORTDATE=`date +"%d-%m-%Y"`
-REPORTDATE="03-11-2017"
+REPORTDATE="02-11-2017"
 #MDATE=`date +"%Y-%m"`
 MDATE="2017-11"
 #MREPORTDATE=`date +"%m-%Y"`
@@ -18,7 +18,8 @@ YDATE="2017"
 
 
 echo $TGMSAHOME
-for i in $(seq 200 201); do
+for i in 200 201; do
+#for i in $(seq 200 201); do
 	cd $TGMSAHOME
 	if [ ! -d $REPORTSHOME ]; then
         mkdir $REPORTSHOME
