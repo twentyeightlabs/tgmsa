@@ -5,9 +5,9 @@ TGMSAHOME='/Users/stachu/work/tgmsa-reports/'
 REPORTSHOME=$TGMSAHOME/reports
 
 #DATE=`date +"%Y-%m-%d"`
-DATE="2017-11-04"
+DATE="2017-11-06"
 #REPORTDATE=`date +"%d-%m-%Y"`
-REPORTDATE="04-11-2017"
+REPORTDATE="06-11-2017"
 #MDATE=`date +"%Y-%m"`
 MDATE="2017-11"
 #MREPORTDATE=`date +"%m-%Y"`
