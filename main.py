@@ -20,7 +20,7 @@ def query_db(box_id, start_date=maya.now()):
     db_end_date = end_date_text + ' 00:00:00'
 
     connection = pymysql.connect(
-        host='192.168.0.15', #localhost
+        host='localhost', #localhost
         user='root',
         password='root',
         db='accoDb',
@@ -85,12 +85,19 @@ def create_daily_csv(box_id, enter_time, exit_time, worked_time, df, date):
     monthly_report=str(date.year)+'-'+str(date.month)
     #daily_report=str(date.year)+'-'+str(date.month)+'-'+str(date.day)
     daily_report=str(date.datetime().strftime("%Y-%m-%d"))
+    detailed_daily_report=str(date.datetime().strftime("%d-%m-%Y"))
+    daily_dir="DAILY"
     box_id_dir = str(box_id)
     box_id = int(box_id)
 
     with open(os.path.join(report_dir, yearly_report, daily_report, "report-{}.csv".format(daily_report)), "a") as csv_file:
         writer = csv.writer(csv_file, delimiter=';')
         writer.writerow(["BOX-{}".format(box_id), enter_time, exit_time, worked_time])
+
+    with open(os.path.join(report_dir, yearly_report, monthly_report, box_id_dir, daily_dir, "report-{}.csv".format(monthly_report)), "a") as csv_file:
+        writer = csv.writer(csv_file, delimiter=',')
+        writer.writerow([detailed_daily_report, enter_time, exit_time, worked_time])
+
 
 #End create_daily_csv
 
