@@ -79,7 +79,7 @@ def daily_box_report(df):
 def create_daily_csv(box_id, enter_time, exit_time, worked_time, df, date):
 
     date = maya.when(date)
-    report_dir = '/Users/stachu/work/tgmsa-reports/reports/'
+    report_dir = '/home/admin/tgmsa/reports/'
 
     yearly_report=str(date.year)
     monthly_report=str(date.year)+'-'+str(date.month)
