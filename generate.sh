@@ -1,7 +1,7 @@
 #/bin/bash
 
 #TGMSAHOME=`pwd`
-TGMSAHOME='/Users/stachu/work/tgmsa-reports/'
+TGMSAHOME='/home/admin/tgmsa/'
 REPORTSHOME=$TGMSAHOME/reports
 
 #DATE=`date +"%Y-%m-%d"`
