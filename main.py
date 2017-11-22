@@ -87,7 +87,7 @@ def create_daily_csv(box_id, enter_time, exit_time, worked_time, df, date):
     daily_report=str(date.datetime().strftime("%Y-%m-%d"))
     detailed_daily_report=str(date.datetime().strftime("%d-%m-%Y"))
     daily_dir="DAILY"
-    box_id_dir = str(box_id)
+    box_id_dir ="BOX-"+str(box_id)
     box_id = int(box_id)
 
     with open(os.path.join(report_dir, yearly_report, daily_report, "report-{}.csv".format(daily_report)), "a") as csv_file:
