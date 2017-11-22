@@ -21,8 +21,8 @@ def query_db(box_id, start_date=maya.now()):
 
     connection = pymysql.connect(
         host='localhost', #localhost
-        user='root',
-        password='root',
+        user='test',
+        password='password',
         db='accoDb',
         cursorclass=pymysql.cursors.DictCursor)
 
