@@ -20,9 +20,9 @@ def query_db(box_id, start_date=maya.now()):
     db_end_date = end_date_text + ' 00:00:00'
 
     connection = pymysql.connect(
-        host='192.168.0.15', #localhost
-        user='root',
-        password='root',
+        host='localhost', #localhost
+        user='vipkam',
+        password='Vipkam789',
         db='accoDb',
         cursorclass=pymysql.cursors.DictCursor)
 
@@ -79,7 +79,7 @@ def daily_box_report(df):
 def create_daily_csv(box_id, enter_time, exit_time, worked_time, df, date):
 
     date = maya.when(date)
-    report_dir = '/Users/stachu/work/tgmsa-reports/reports'
+    report_dir = '/home/michal/tgmsa/reports'
 
     yearly_report=str(date.year)
     monthly_report=str(date.year)+'-'+str(date.month)
