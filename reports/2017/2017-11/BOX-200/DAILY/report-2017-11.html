@@ -36,7 +36,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: "GET",
-        url:"https://tgmsa.vipkam.pl/2017/2017-11/all-data.csv",
+        url:"https://tgmsa.vipkam.pl/2017/2017-11/BOX-200/DAILY/report-2017-11.csv",
         dataType: "text",
         success: function (data) { processData(data); }
     });
@@ -48,7 +48,7 @@ $(document).ready(function () {
             for (var i = 0; i <= allLinesArray.length - 1; i++) {
 	        var rowData = allLinesArray[i].split(',');
 	        if(rowData && rowData.length > 1)
-	            dataPoints.push({ y: parseFloat(rowData[1]), label: rowData[0] });
+	            dataPoints.push({ y: parseFloat(rowData[3]), label: rowData[0] });
             }
             chart.options.data[0].dataPoints = dataPoints;
             chart.render();
@@ -59,10 +59,10 @@ $(document).ready(function () {
     var chart = new CanvasJS.Chart("chartContainer", {
         theme: "theme2",
         title: {
-            text: "Raport przepracowanych godzin w miesiącu - 2017-11"
+            text: "Raport szczegółowy dla BOX-200"
         },
         axisX:{
-            title : "[ Numer BOXu ]",
+            title : "[ Data ]",
             titleFontFamily: "comic sans ms",
             titleFontColor : "steelBlue",
         },
@@ -131,22 +131,12 @@ $(document).ready(function () {
                 </div>
             </div>
         </header>
-
         <section id="details" class="detailed-report text-center">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <p>Aby zobaczyć szczęgóły, proszę wybrać numer BOXu:</p>
-                        <select onchange="self.location.href = this.value">
-                        <option VALUE="">wybierz:</option>
-                        <option VALUE="https://tgmsa.vipkam.pl/2017/2017-11/BOX-8/DAILY/daily-details.html">BOX-8</option>
-                        <option VALUE="https://tgmsa.vipkam.pl/2017/2017-11/BOX-22/DAILY/daily-details.html">BOX-22</option>
-			            <option VALUE="https://tgmsa.vipkam.pl/2017/2017-11/BOX-28/DAILY/daily-details.html">BOX-28</option>
-			            <option VALUE="https://tgmsa.vipkam.pl/2017/2017-11/BOX-30/DAILY/daily-details.html">BOX-30</option>
-			            <option VALUE="https://tgmsa.vipkam.pl/2017/2017-11/BOX-200/DAILY/daily-details.html">BOX-200</option>
-			            <option VALUE="https://tgmsa.vipkam.pl/2017/2017-11/BOX-217/DAILY/daily-details.html">BOX-217</option>
-			            <option VALUE="https://tgmsa.vipkam.pl/2017/2017-11/BOX-219/DAILY/daily-details.html">BOX-219</option>
-                    </select>
+                        <p>Aby zobaczyć szczęgóły, proszę kliknąć poniższy link:</p>
+            <a href="https://tgmsa.vipkam.pl/2017/2017-11/BOX-200/DAILY/report-2017-11.csv">szczegóły</a><br>
                     </div>
                 </div>
             </div>

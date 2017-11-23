@@ -1,7 +1,7 @@
 #/bin/bash
 
 #TGMSAHOME=`pwd`
-TGMSAHOME='/home/admin/tgmsa/'
+TGMSAHOME='/Users/stachu/work/tgmsa-reports'
 REPORTSHOME=$TGMSAHOME/reports
 
 #DATE=`date +"%Y-%m-%d"`
@@ -66,6 +66,14 @@ TIMEOPENHOUR=`expr $CURRENTTIMEOPEN / 60`
 echo "w minutach: $TIMEOPENHOUR"
 echo "w godzinach: $(($TIMEOPENHOUR / 60)):$(($TIMEOPENHOUR % 60))"
 echo "BOX-$i,$(($TIMEOPENHOUR / 60)):$(($TIMEOPENHOUR % 60))" > $TGMSAHOME/reports/$YDATE/$MDATE/$MDATE-BOX-$i.csv
+
+#monthly detailed report
+cp html-template/report-detailed-template.html $REPORTSHOME/$YDATE/$MDATE/BOX-$i/DAILY/report-$MDATE.html
+sed -i "s/INSERT-MONTHLY-DATE/$MDATE/g" $REPORTSHOME/$YDATE/$MDATE/BOX-$i/DAILY/report-$MDATE.html
+sed -i "s/INSERT-BOX-NUMBER/$i/g" $REPORTSHOME/$YDATE/$MDATE/BOX-$i/DAILY/report-$MDATE.html
+sed -i "s/:/./g" $REPORTSHOME/$YDATE/$MDATE/BOX-$i/DAILY/report-$MDATE.csv
+#end monthly detailed report
+
 
 ######################
 
