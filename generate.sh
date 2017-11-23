@@ -4,16 +4,16 @@
 TGMSAHOME='/home/michal/tgmsa'
 REPORTSHOME=$TGMSAHOME/reports
 
-#DATE=`date +"%Y-%m-%d"`
-DATE="2017-11-16"
-#REPORTDATE=`date +"%d-%m-%Y"`
-REPORTDATE="16-11-2017"
-#MDATE=`date +"%Y-%m"`
-MDATE="2017-11"
-#MREPORTDATE=`date +"%m-%Y"`
-MREPORTDATE="11-2017"
-#YDATE=`date +"%Y"`
-YDATE="2017"
+DATE=`date +"%Y-%m-%d"`
+#DATE="2017-11-22"
+REPORTDATE=`date +"%d-%m-%Y"`
+#REPORTDATE="22-11-2017"
+MDATE=`date +"%Y-%m"`
+#MDATE="2017-11"
+MREPORTDATE=`date +"%m-%Y"`
+#MREPORTDATE="11-2017"
+YDATE=`date +"%Y"`
+#YDATE="2017"
 
 
 
