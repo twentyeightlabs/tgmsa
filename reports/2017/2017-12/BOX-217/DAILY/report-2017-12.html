@@ -4,7 +4,7 @@
  <meta charset="utf-8">
 
     <!-- Bootstrap Core CSS -->
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://tgmsa.vipkam.pl/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -12,14 +12,14 @@
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
     <!-- Plugin CSS -->
-    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="lib/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="lib/device-mockups/device-mockups.min.css">
+    <link rel="stylesheet" href="https://tgmsa.vipkam.pl/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://tgmsa.vipkam.pl/lib/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="https://tgmsa.vipkam.pl/lib/device-mockups/device-mockups.min.css">
 
     <!-- Theme CSS -->
-    <link href="css/new-age.min.css" rel="stylesheet">
+    <link href="https://tgmsa.vipkam.pl/css/new-age.min.css" rel="stylesheet">
 
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="https://tgmsa.vipkam.pl/css/custom.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,14 +29,14 @@
     <![endif]-->
 
 
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
-<!--<script type="text/javascript">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+<script type="text/javascript">
 
 $(document).ready(function () {
 
     $.ajax({
         type: "GET",
-        url:"https://twentyeightlabs.com/reports/2017-05-08/report-2017-05-08.csv",
+        url:"https://tgmsa.vipkam.pl/2017/2017-12/BOX-217/DAILY/report-2017-12.csv",
         dataType: "text",
         success: function (data) { processData(data); }
     });
@@ -48,7 +48,7 @@ $(document).ready(function () {
             for (var i = 0; i <= allLinesArray.length - 1; i++) {
 	        var rowData = allLinesArray[i].split(',');
 	        if(rowData && rowData.length > 1)
-	            dataPoints.push({ y: parseFloat(rowData[3]), label: rowData[2] });
+	            dataPoints.push({ y: parseFloat(rowData[3]), label: rowData[0] });
             }
             chart.options.data[0].dataPoints = dataPoints;
             chart.render();
@@ -59,10 +59,10 @@ $(document).ready(function () {
     var chart = new CanvasJS.Chart("chartContainer", {
         theme: "theme2",
         title: {
-            text: "Raport przepracowanych godzin w dniu 08.05.2017"
+            text: "Raport szczegółowy dla BOX-217"
         },
         axisX:{
-            title : "[ Numer BOXu ]",
+            title : "[ Data ]",
             titleFontFamily: "comic sans ms",
             titleFontColor : "steelBlue",
         },
@@ -80,7 +80,7 @@ $(document).ready(function () {
     });
 
 });
-</script>-->
+</script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
 </head>
 <body id="page-top">
@@ -93,7 +93,7 @@ $(document).ready(function () {
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand page-scroll" href="#page-top"><img class="img-responsive" src="img/logo.png" alt="vipkam"></a>
+                    <a class="navbar-brand page-scroll" href="#page-top"><img class="img-responsive" src="https://tgmsa.vipkam.pl/img/logo.png" alt="vipkam"></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -115,10 +115,10 @@ $(document).ready(function () {
             <!-- /.container-fluid -->
         </nav>
 
-        <!--<header>
+        <header>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
+                    <!--<div class="col-md-8 col-md-offset-2">
                         <div class="header-content">
                             
                             <div class="header-content-inner">
@@ -127,69 +127,35 @@ $(document).ready(function () {
                                 <a href="#about" class="btn btn-outline btn-xl page-scroll">O mnie</a>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
-        </header>-->
-
-        <!--<div id="chartContainer" style="height: 300px; width: 100%;"></div>-->
-
-        <section id="about" class="download bg-primary text-center">
+        </header>
+        <section id="details" class="detailed-report text-center">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <!--<h2 class="section-heading">Discover what all the buzz is about!</h2>-->
-                        <p>Raport dzienny, proszę wybrać datę:</p>
-                        <select onchange="self.location.href = this.value">
-                        <option VALUE="">wybierz:</option>
-                        INSERT HERE DAILY
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-12-01/report-2017-12-01.html'>01-12-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-30/report-2017-11-30.html'>30-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-29/report-2017-11-29.html'>29-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-28/report-2017-11-28.html'>28-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-27/report-2017-11-27.html'>27-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-25/report-2017-11-25.html'>25-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-24/report-2017-11-24.html'>24-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-23/report-2017-11-23.html'>23-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-22/report-2017-11-22.html'>22-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-21/report-2017-11-21.html'>21-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-20/report-2017-11-20.html'>20-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-18/report-2017-11-18.html'>18-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-17/report-2017-11-17.html'>17-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-16/report-2017-11-16.html'>16-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-15/report-2017-11-15.html'>15-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-15/report-2017-11-15.html'>15-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-14/report-2017-11-14.html'>14-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-13/report-2017-11-13.html'>13-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-10/report-2017-11-10.html'>10-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-09/report-2017-11-09.html'>09-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-08/report-2017-11-08.html'>08-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-07/report-2017-11-07.html'>07-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-06/report-2017-11-06.html'>06-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-04/report-2017-11-04.html'>04-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-03/report-2017-11-03.html'>03-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-02/report-2017-11-02.html'>02-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-08/report-2017-11-08.html'>07-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-06/report-2017-11-06.html'>06-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-04/report-2017-11-04.html'>04-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-03/report-2017-11-03.html'>03-11-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11-02/report-2017-11-02.html'>02-11-2017</option>
-                        <!-- <option VALUE="https://tgmsa.vipkam.pl/2017/2017-11-02/report-2017-11-02.html">02-11-2017</option> -->
-                    </select>
-                    </div>
-                    <div class="col-md-8 col-md-offset-2">
-                        <!--<h2 class="section-heading">Discover what all the buzz is about!</h2>-->
-                        <p>Raport miesięczny, proszę wybrać datę:</p>
-                        <select onchange="self.location.href = this.value">
-                        <option VALUE="">wybierz:</option>
-                        INSERT HERE MONTHLY
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-12/2017-12.html'>12-2017</option>
-<option VALUE='https://tgmsa.vipkam.pl/2017/2017-11/2017-11.html'>11-2017</option>
-                    </select>
+                        <p>Aby zobaczyć szczęgóły, proszę kliknąć poniższy link:</p>
+            <a href="https://tgmsa.vipkam.pl/2017/2017-12/BOX-217/DAILY/report-2017-12.csv">szczegóły</a><br>
                     </div>
                 </div>
             </div>
         </section>
+        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        <!--<section id="about" class="download bg-primary text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h2 class="section-heading">Discover what all the buzz is about!</h2>
+                        <p>Our app is available on any mobile device! Download now to get started!</p>
+                        <div class="badges">
+                            <a class="badge-link" href="#"><img src="img/google-play-badge.svg" alt=""></a>
+                            <a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>-->
 
         <!--<section id="contact" class="contact bg-primary">
             <div class="container">
@@ -253,16 +219,16 @@ $(document).ready(function () {
     </div>
 
     <!-- jQuery -->
-    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="https://tgmsa.vipkam.pl/lib/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://tgmsa.vipkam.pl/lib/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="js/new-age.min.js"></script>
+    <script src="https://tgmsa.vipkam.pl/js/new-age.min.js"></script>
 
 </body>
 </html>
