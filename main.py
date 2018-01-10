@@ -82,7 +82,8 @@ def create_daily_csv(box_id, enter_time, exit_time, worked_time, df, date):
     report_dir = '/home/michal/tgmsa/reports'
 
     yearly_report=str(date.year)
-    monthly_report=str(date.year)+'-'+str(date.month)
+    #monthly_report=str(date.year)+'-'+str(date.month)
+    monthly_report=str(date.datetime().strftime("%Y-%m"))
     #daily_report=str(date.year)+'-'+str(date.month)+'-'+str(date.day)
     daily_report=str(date.datetime().strftime("%Y-%m-%d"))
     detailed_daily_report=str(date.datetime().strftime("%d-%m-%Y"))

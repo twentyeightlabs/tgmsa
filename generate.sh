@@ -47,6 +47,10 @@ for i in 8 22 28 30 200 217 219; do
 		mkdir $TGMSAHOME/reports/$YDATE/$MDATE/BOX-$i/DAILY
 	fi
 
+	if [ ! -f $TGMSAHOME/reports/$YDATE/$MDATE/BOX-$i/DAILY/report-$MDATE.csv ]; then
+		touch $TGMSAHOME/reports/$YDATE/$MDATE/BOX-$i/DAILY/report-$MDATE.csv
+	fi
+
 python $TGMSAHOME/main.py $i $DATE
 
 TIMEOPEN=`cat $TGMSAHOME/reports/$YDATE/$DATE/report-$DATE.csv|grep -i BOX-$i |cut -d ";" -f4`
