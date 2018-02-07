@@ -59,15 +59,21 @@ $(document).ready(function () {
     var chart = new CanvasJS.Chart("chartContainer", {
         theme: "theme2",
         title: {
-            text: "Raport przepracowanych godzin w dniu 2018-02-01"
+            text: "Raport przepracowanych godzin w dniu 2018-02-01",
+            fontSize: 20
         },
         axisX:{
             title : "[ Numer BOXu ]",
+            titleMaxWidth: 100,
+            titleFontSize: 30,
+            labelFontSize: 15,
             titleFontFamily: "comic sans ms",
             titleFontColor : "steelBlue",
         },
         axisY:{
             title : "[ Ilość przepracowanych godzin ]",
+            titleFontSize: 30,
+            labelFontSize: 15,
             titleFontFamily: "comic sans ms",
             titleFontColor : "steelBlue",
 	    stripLines: [{
@@ -138,7 +144,7 @@ $(document).ready(function () {
             </div>
         </header>
 
-        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        <div id="chartContainer" style="height: 3000px; width: 100%;"></div>
         <!--<section id="about" class="download bg-primary text-center">
             <div class="container">
                 <div class="row">
