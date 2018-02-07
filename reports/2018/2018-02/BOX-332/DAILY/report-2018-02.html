@@ -65,11 +65,18 @@ $(document).ready(function () {
             title : "[ Data ]",
             titleFontFamily: "comic sans ms",
             titleFontColor : "steelBlue",
+            interval: 1
         },
         axisY:{
             title : "[ Ilość przepracowanych godzin ]",
             titleFontFamily: "comic sans ms",
             titleFontColor : "steelBlue",
+            stripLines: [{
+                value: 9,
+                label: "DO PRZEPRACOWANIA",
+                labelFontColor: "#808080",
+                labelAlign: "near"
+                }]
         },
         data: [
         {
@@ -141,7 +148,7 @@ $(document).ready(function () {
                 </div>
             </div>
         </section>
-        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        <div id="chartContainer" style="height: 400px; width: 100%;"></div>
         <!--<section id="about" class="download bg-primary text-center">
             <div class="container">
                 <div class="row">
@@ -173,7 +180,7 @@ $(document).ready(function () {
             </div>
         </section>-->
 
-        <div id="chartContainer" style="height: 100%; width: 100%;"></div>
+        <!-- <div id="chartContainer" style="height: 100%; width: 100%;"></div> -->
 
         <div class="footer-widget" id="footer">
             <div class="container">
