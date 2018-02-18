@@ -58,6 +58,7 @@ def daily_box_report(df):
         worked_time = '00:00'
 
     else:
+        enter_time = df['event_time'].iloc[0]
         enter_time = enter_time.time().strftime('%H:%M')
 
         if enter_time < '09:00':
