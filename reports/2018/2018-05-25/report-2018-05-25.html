@@ -48,7 +48,7 @@ $(document).ready(function () {
             for (var i = 0; i <= allLinesArray.length - 1; i++) {
 	        var rowData = allLinesArray[i].split(',');
 	        if(rowData && rowData.length > 1)
-	            dataPoints.push({ y: parseFloat(rowData[3]), label: rowData[0],rowData[1],rowData[2] });
+	            dataPoints.push({ y: parseFloat(rowData[3]), label: rowData[0][1][2] });
             }
             chart.options.data[0].dataPoints = dataPoints;
             chart.render();
