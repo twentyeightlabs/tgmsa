@@ -103,7 +103,7 @@ done
 
 #daily report
 cp html-template/report-template-s.html $REPORTSHOME/${YDATE}S/$DATE/report-$DATE.html
-sed -i "s/INSERT-DATE/$DATE/g" $TGMSAHOME/reports/${YDATE}S/$DATE/report-$DATE.html
+sed -i "s/INSERT-DATE/${DATE}S/g" $TGMSAHOME/reports/${YDATE}S/$DATE/report-$DATE.html
 sed -i "s/:/./g" $TGMSAHOME/reports/${YDATE}S/$DATE/report-$DATE.csv
 sed -i "s/;/,/g" $TGMSAHOME/reports/${YDATE}S/$DATE/report-$DATE.csv
 #end daily report
