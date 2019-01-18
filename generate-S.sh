@@ -5,16 +5,16 @@ TGMSAHOME='/home/michal/tgmsa'
 REPORTSHOME=$TGMSAHOME/reports
 
 #DATE=`date +"%Y-%m-%d"`
-DATE="2018-11-10"
+DATE="2018-12-03"
 
 #REPORTDATE=`date +"%d-%m-%Y"`
-REPORTDATE="10-11-2018"
+REPORTDATE="03-12-2018"
 
 #MDATE=`date +"%Y-%m"`
-MDATE="2018-11"
+MDATE="2018-12"
 
 #MREPORTDATE=`date +"%m-%Y"`
-MREPORTDATE="11-2018"
+MREPORTDATE="12-2018"
 
 #YDATE=`date +"%Y"`
 YDATE="2018"
@@ -90,7 +90,7 @@ echo "w godzinach: $(($TIMEOPENHOUR / 60)):$(($TIMEOPENHOUR % 60))"
 echo "BOX-$i,$(($TIMEOPENHOUR / 60)):$(($TIMEOPENHOUR % 60))" > $TGMSAHOME/reports/${YDATE}S/$MDATE/$MDATE-BOX-$i.csv
 
 #monthly detailed report
-cp html-template/report-detailed-template.html $REPORTSHOME/${YDATE}S/$MDATE/BOX-$i/DAILY/report-$MDATE.html
+cp html-template/report-detailed-template-s.html $REPORTSHOME/${YDATE}S/$MDATE/BOX-$i/DAILY/report-$MDATE.html
 sed -i "s/INSERT-MONTHLY-DATE/$MDATE/g" $REPORTSHOME/${YDATE}S/$MDATE/BOX-$i/DAILY/report-$MDATE.html
 sed -i "s/INSERT-BOX-NUMBER/$i/g" $REPORTSHOME/${YDATE}S/$MDATE/BOX-$i/DAILY/report-$MDATE.html
 sed -i "s/:/./g" $REPORTSHOME/${YDATE}S/$MDATE/BOX-$i/DAILY/report-$MDATE.csv
@@ -102,14 +102,14 @@ sed -i "s/:/./g" $REPORTSHOME/${YDATE}S/$MDATE/BOX-$i/DAILY/report-$MDATE.csv
 done
 
 #daily report
-cp html-template/report-template.html $REPORTSHOME/${YDATE}S/$DATE/report-$DATE.html
+cp html-template/report-template-s.html $REPORTSHOME/${YDATE}S/$DATE/report-$DATE.html
 sed -i "s/INSERT-DATE/$DATE/g" $TGMSAHOME/reports/${YDATE}S/$DATE/report-$DATE.html
 sed -i "s/:/./g" $TGMSAHOME/reports/${YDATE}S/$DATE/report-$DATE.csv
 sed -i "s/;/,/g" $TGMSAHOME/reports/${YDATE}S/$DATE/report-$DATE.csv
 #end daily report
 
 #monthly report
-cp html-template/monthly-all-box-template.html $REPORTSHOME/${YDATE}S/$MDATE/$MDATE.html
+cp html-template/monthly-all-box-template-s.html $REPORTSHOME/${YDATE}S/$MDATE/$MDATE.html
 sed -i "s/INSERT-MONTHLY-DATE/$MDATE/g" $REPORTSHOME/${YDATE}S/$MDATE/$MDATE.html
 cat $TGMSAHOME/reports/${YDATE}S/$MDATE/$MDATE-BOX-*.csv > $TGMSAHOME/reports/${YDATE}S/$MDATE/all-data.csv
 sed -i "s/:/./g" $TGMSAHOME/reports/${YDATE}S/$MDATE/all-data.csv
