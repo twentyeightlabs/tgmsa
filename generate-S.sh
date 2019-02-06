@@ -4,20 +4,20 @@
 TGMSAHOME='/home/michal/tgmsa'
 REPORTSHOME=$TGMSAHOME/reports
 
-#DATE=`date +"%Y-%m-%d"`
-DATE="2019-02-04"
+DATE=`date +"%Y-%m-%d"`
+#DATE="2019-02-04"
 
-#REPORTDATE=`date +"%d-%m-%Y"`
-REPORTDATE="04-02-2019"
+REPORTDATE=`date +"%d-%m-%Y"`
+#REPORTDATE="04-02-2019"
 
-#MDATE=`date +"%Y-%m"`
-MDATE="2019-02"
+MDATE=`date +"%Y-%m"`
+#MDATE="2019-02"
 
-#MREPORTDATE=`date +"%m-%Y"`
-MREPORTDATE="02-2019"
+MREPORTDATE=`date +"%m-%Y"`
+#MREPORTDATE="02-2019"
 
-#YDATE=`date +"%Y"`
-YDATE="2019"
+YDATE=`date +"%Y"`
+#YDATE="2019"
 
 ###################################################
 #Spozywka
