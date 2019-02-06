@@ -5,16 +5,16 @@ TGMSAHOME='/home/michal/tgmsa'
 REPORTSHOME=$TGMSAHOME/reports
 
 #DATE=`date +"%Y-%m-%d"`
-DATE="2019-01-31"
+DATE="2019-02-04"
 
 #REPORTDATE=`date +"%d-%m-%Y"`
-REPORTDATE="31-01-2019"
+REPORTDATE="04-02-2019"
 
 #MDATE=`date +"%Y-%m"`
-MDATE="2019-01"
+MDATE="2019-02"
 
 #MREPORTDATE=`date +"%m-%Y"`
-MREPORTDATE="01-2019"
+MREPORTDATE="02-2019"
 
 #YDATE=`date +"%Y"`
 YDATE="2019"
