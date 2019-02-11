@@ -27,7 +27,7 @@ def query_db(box_id, start_date=maya.now()):
         cursorclass=pymysql.cursors.DictCursor)
 
     query = ("SELECT event_time FROM event e LEFT JOIN event_user ON event_user.event_id = e.id WHERE e.source IN (10)"
-             " AND e.event_time <= %s AND event_user.user_id IN (%s) AND e.event_time >= %s AND e.code IN (263)"
+             " AND e.event_time <= %s AND event_user.user_id IN (%s) AND e.event_time >= %s "
              " ORDER BY e.event_time ASC  LIMIT 0,10000;")
 
     df = pd.read_sql(
