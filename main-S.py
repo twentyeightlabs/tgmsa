@@ -66,19 +66,21 @@ def daily_box_report(df):
             enter_time = datetime.strptime(enter_time, '%H:%M')
             #print("format casu:", type(enter_time))
             exit_time = df['event_time'].iloc[-1]
-            exit_time = datetime.strptime(exit_time, '%H:%M')
+            exit_time = exit_time.time().strftime('%H:%M')
             if exit_time > '18:00':
                 exit_time = '18:00'
             #print(type(enter_time))
+            exit_time = datetime.strptime(exit_time, '%H:%M')
             print('EXIT-TIME:', exit_time)
             worked_time = exit_time - enter_time
         else:
             enter_time = df['event_time'].iloc[0]
             exit_time = df['event_time'].iloc[-1]
-            exit_time = datetime.strptime(exit_time, '%H:%M')
+            exit_time = exit_time.time().strftime('%H:%M')
             if exit_time > '18:00':
                 exit_time = '18:00'
             #print(type(enter_time))
+            exit_time = datetime.strptime(exit_time, '%H:%M')
             print('EXIT-TIME:', exit_time)
             worked_time = exit_time - enter_time
             
