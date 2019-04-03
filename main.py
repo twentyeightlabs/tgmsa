@@ -93,6 +93,8 @@ def daily_box_report(df):
         exit_time = exit_time.time().strftime('%H.%M')
         worked_time = str(worked_time)
         #print(worked_time)
+	if worked_time == '23:59':
+        	worked_time = '00:00'
 
     #print('godzina wejscia: ', enter_time, '| ''godzina wyjscia: ', exit_time, ' |''przepracowano: ', worked_time)
 
