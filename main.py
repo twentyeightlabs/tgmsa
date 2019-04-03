@@ -70,7 +70,7 @@ def daily_box_report(df):
     	    weekday = datetime.weekday(datetime.now())
     	    if weekday == 5:
             	if exit_time > '14:00':
-            	exit_time = '14:00'
+            		exit_time = '14:00'
             elif exit_time > '18:00':
                 exit_time = '18:00'
             #print(type(enter_time))
@@ -84,7 +84,7 @@ def daily_box_report(df):
     	    weekday = datetime.weekday(datetime.now())
     	    if weekday == 5:
             	if exit_time > '14:00':
-            	exit_time = '14:00'
+            		exit_time = '14:00'
             elif exit_time > '18:00':
                 exit_time = '18:00'
             #print(type(enter_time))
