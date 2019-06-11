@@ -8,6 +8,9 @@ body {
     margin: 0 auto;
 }*/
 
+.legend {
+  background-color: #999;
+}
 .column {
   float: left;
   width: 33.33%;
