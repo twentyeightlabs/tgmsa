@@ -9,6 +9,7 @@ body {
 }*/
 
 .legend {
+  padding: 10px;
   background-color: #999;
 }
 .column {
